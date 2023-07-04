@@ -1,3 +1,3 @@
 fn main() {
-    let mut x = 42 / 0;
+    println!("Hello World!");
 }
