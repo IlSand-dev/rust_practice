@@ -22,7 +22,7 @@ impl Rect {
     }
 
     fn bottom_right(&self) -> (f32, f32) {
-        (self.top_left.0 + self.width, self.top_left.1 - width)
+        (self.top_left.0 + self.width, self.top_left.1 - self.width)
     }
 
     fn area(&self) -> f32 {
@@ -30,7 +30,7 @@ impl Rect {
     }
 
     fn perimeter(&self) -> f32 {
-        self.width * 4
+        self.width * 4.
     }
 }
 
