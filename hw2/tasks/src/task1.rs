@@ -22,7 +22,7 @@ fn find_term(search_term: &str, quote: &str) -> String {
     let mut result_line = "";
     for line in quote.split('\n'){
         let location = line.find(search_term);
-        if let Some(location) = location{
+        if let Some(_) = location{
             result_line = line;
             break;
         }
