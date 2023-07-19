@@ -3,17 +3,21 @@ pub mod vector {
     use std::{alloc, mem, ptr};
     use std::ptr::NonNull;
 
-    #[derive(Debug)]
     pub struct MyVector<T> {
         ptr: NonNull<T>,
         len: usize,
         capacity: usize,
     }
 
-    impl<T> MyVector<T> {
+        impl<T> MyVector<T> {
+            //TODO delete after
+            pub fn testing_ptr(&mut self) -> T{
+                unsafe{ptr::read(self.ptr.as_ptr().add(self.len))}
+            }
+
         pub fn new() -> Self {
             let cap = if mem::size_of::<T>() == 0 { usize::MAX } else { 0 };
-            MyVector {
+            Self {
                 ptr: NonNull::dangling(),
                 len: 0,
                 capacity: cap,
@@ -92,7 +96,7 @@ pub mod vector {
         }
 
         fn grow(&mut self) {
-            assert!(mem::size_of::<T>() != 0, "Capacity overflow");
+            assert_ne!(mem::size_of::<T>(), 0, "Capacity overflow");
 
             let (new_capacity, new_layout) = if self.capacity == 0 {
                 (1, Layout::array::<T>(1).unwrap())
